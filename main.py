@@ -1,4 +1,4 @@
-# face detection webcam example
+# face detection using webcam( to read video replace "0" with video file path)
 # usage: python face_detection_webcam.py 
 
 # import necessary packages
@@ -40,13 +40,16 @@ while webcam.isOpened():
 
         text = "{:.2f}%".format(confidence[idx] * 100)
 
-        Y = startY - 10 if startY - 10 > 10 else startY + 10
+        if startY - 10 > 10 :
+            Y = startY - 10 
+        else:
+            startY + 10
 
-        # write confidence percentage on top of face rectangle
+        # generate the confidence percentage on top of face rectangle
         cv2.putText(frame, text, (startX,Y), cv2.FONT_HERSHEY_SIMPLEX, 0.7,
                     (0,255,0), 2)
 
-    # display output
+    # display the output
     cv2.imshow("Real-time face detection", frame)
 
     # press "Q" to stop
